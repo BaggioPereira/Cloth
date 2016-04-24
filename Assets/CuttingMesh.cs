@@ -7,10 +7,11 @@
  {
      void Start()
      {
-         Mesh mesh = gameObject.GetComponent<MeshFilter>().mesh;
-         MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
+         GameObject plane = GameObject.Find("Plane");
+         Mesh mesh = plane.GetComponent<MeshFilter>().mesh;
+         MeshRenderer meshRenderer = plane.GetComponent<MeshRenderer>();
          splitMesh(mesh, meshRenderer);
-         Destroy(gameObject);
+         Destroy(plane);
      }
 
      void splitMesh(Mesh msh, MeshRenderer mshRen)
@@ -42,7 +43,13 @@
                  newGO.AddComponent<MeshRenderer>().material = mshRen.materials[i];
                  newGO.AddComponent<MeshFilter>().mesh = mesh;
                  newGO.AddComponent<BoxCollider>();
+                 newGO.tag = "Player";
              }
          }
+     }
+
+     void addSprings()
+     {
+         
      }
  }
